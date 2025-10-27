@@ -12,12 +12,19 @@ This project analyzes the Udacity A/B Test dataset to understand user behavior a
 
 ## Folder Structure
 ml-abtest-udacity/
+
 ├── data/ # Raw & cleaned data (not pushed to GitHub)
+
 ├── notebooks/ # Jupyter notebooks for EDA and experiments
+
 ├── src/ # Python scripts (data cleaning, modeling)
+
 ├── models/ # Saved models
+
 ├── api/ # AWS Lambda / FastAPI code
+
 ├── tests/ # Unit tests
+
 └── docs/ # Reports, diagrams
 
 
