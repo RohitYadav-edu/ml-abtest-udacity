@@ -1,7 +1,7 @@
 # ml-abtest-udacity
-End-to-End A/B testing and uplift modeling on the Udacity dataset with statistical analysis, CUPED, and AWS deployment.
+End-to-End A/B testing on the Udacity dataset with statistical analysis and CUPED.
 
-# Udacity A/B Test Analysis and Uplift Modeling
+# Udacity A/B Test Analysis
 
 ## Overview
 This project analyzes the Udacity A/B Test dataset to understand user behavior and estimate the causal impact of experiments using:
