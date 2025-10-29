@@ -7,8 +7,6 @@ End-to-End A/B testing and uplift modeling on the Udacity dataset with statistic
 This project analyzes the Udacity A/B Test dataset to understand user behavior and estimate the causal impact of experiments using:
 - A/B testing (z-test, p-values, confidence intervals)
 - CUPED variance reduction
-- Uplift modeling (T-learner, LightGBM)
-- Simple AWS Lambda API for treatment assignment
 
 ## Folder Structure
 ml-abtest-udacity/
@@ -33,5 +31,4 @@ ml-abtest-udacity/
 2. Clean and prepare data.
 3. Run power analysis & A/B test.
 4. Apply CUPED.
-5. Train uplift models.
-6. Deploy a small AWS Lambda.
+
