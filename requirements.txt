@@ -1,14 +1,5 @@
 numpy
 pandas
-scikit-learn
-lightgbm
 matplotlib
 seaborn
 statsmodels
-fastapi
-uvicorn[standard]
-pre-commit
-black
-isort
-ruff
-pytest
