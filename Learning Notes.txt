@@ -1,0 +1,163 @@
+============================================================
+LEARNING NOTES — A/B Testing & CUPED
+============================================================
+
+This file explains everything I (Rohit) learned in this project.
+Each concept is written in two ways:
+
+1. Kid Version   — simple stories & intuition
+2. Technical Version — the real statistical explanation
+
+Anyone can learn from this. :)
+
+------------------------------------------------------------
+1. What is A/B Testing?
+------------------------------------------------------------
+
+[Kid Version]
+Imagine you have two different ice-cream flavors.
+You give Flavor A to some kids, and Flavor B to other kids.
+Whichever flavor more kids choose is the winner.
+
+A/B testing is the same. Two versions → two groups → compare.
+
+[Technical Version]
+A/B testing is an experiment with:
+- a control group (original experience)
+- an experiment group (new variant)
+
+We measure a metric (clicks, conversions, payments) in both groups
+and use statistical hypothesis testing to determine whether the 
+difference is real or due to random chance.
+
+
+------------------------------------------------------------
+2. Conversion Funnel
+------------------------------------------------------------
+
+[Kid Version]
+Think of a water slide:
+- everyone climbs the stairs (pageviews)
+- some start sliding (clicks)
+- some reach the pool (enrollments)
+- some get a popsicle after (payments)
+
+At every stage, people drop off.
+
+[Technical Version]
+A funnel is a sequence of user actions:
+CTR = Clicks / Pageviews
+Enrollment Rate = Enrollments / Clicks
+Payment Rate = Payments / Enrollments
+
+We compute these for each group to understand where users drop off
+and whether the experiment improves any funnel stage.
+
+
+------------------------------------------------------------
+3. Why We Use Hypothesis Testing
+------------------------------------------------------------
+
+[Kid Version]
+Even if more kids like flavor B, it might be a coincidence if you
+only asked 5 kids. You need enough kids so the result is trustworthy.
+
+[Technical Version]
+We check if differences between experiment and control are
+statistically significant using a two-proportion z-test:
+
+z = (p1 - p2) / sqrt(p * (1 - p) * (1/n1 + 1/n2))
+
+Where p1, p2 are conversion rates.
+If p-value < 0.05, the difference is unlikely to be random noise.
+
+
+------------------------------------------------------------
+4. Why We Use the Z-test (not just p1 and p2)
+------------------------------------------------------------
+
+[Kid Version]
+Just knowing “10 kids like A and 12 like B” doesn’t tell us if the
+difference is big enough to matter. We need a score that considers
+sample size too.
+
+[Technical Version]
+The z-test incorporates:
+- the difference in proportions
+- the sample size of each group
+- the pooled variance
+
+P-values come *from* the z-score.
+Z-score → probability → decision.
+
+p-values alone without standardization would be meaningless.
+
+
+------------------------------------------------------------
+5. What is CUPED? (Variance Reduction)
+------------------------------------------------------------
+
+[Kid Version]
+Imagine comparing kids’ running speeds.
+Some kids are fast by nature.
+If you adjust for each kid’s past speed, you get a fairer comparison.
+This makes it easier to see if new shoes actually helped.
+
+[Technical Version]
+CUPED uses:
+Y_adj = Y - θ (X - X_mean)
+
+Where:
+- Y is the experiment metric (e.g., pageviews during experiment)
+- X is pre-experiment metric
+- θ = Cov(Y, X) / Var(X)
+
+This removes predictable variation from Y, lowering variance and
+improving test sensitivity.
+
+
+------------------------------------------------------------
+6. Why CUPED Goes AFTER Regular A/B Testing
+------------------------------------------------------------
+
+[Kid Version]
+First you taste ice-cream normally.
+Then, only if you want more confidence, you use a "super tool"
+that removes kids’ natural preferences to compare fairly.
+
+[Technical Version]
+CUPED is not meant to replace the main z-test.
+It validates the robustness of the result.
+You run CUPED after the baseline analysis to see if results persist
+when variance is reduced.
+
+
+------------------------------------------------------------
+7. Final Result Interpretation
+------------------------------------------------------------
+
+[Kid Version]
+The new design didn’t help enough for us to say “yes, this is better.” 
+Maybe a small improvement, maybe just luck.
+
+[Technical Version]
+CUPED-adjusted p-value ≈ 0.606 (> 0.05)
+→ Not statistically significant.
+→ Cannot reject null hypothesis.
+→ No reliable difference between control and experiment.
+
+
+------------------------------------------------------------
+8. What I Learned
+------------------------------------------------------------
+
+- How to calculate funnel metrics
+- How to run two-proportion z-tests
+- How to interpret p-values properly
+- How CUPED works conceptually and mathematically
+- How to check whether an experiment truly caused improvement
+- How to document experiments professionally
+
+============================================================
+END OF NOTES
+============================================================
