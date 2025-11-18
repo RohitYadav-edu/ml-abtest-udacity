@@ -223,6 +223,7 @@ From a product perspective, this would suggest:
 ml-abtest-udacity/
 │
 ├── data/
+│   ├── Final Project Baseline Values - Sheet1.csv
 │   ├── Final Project Results - Control.csv
 │   └── Final Project Results - Experiment.csv
 │
